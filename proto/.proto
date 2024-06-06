@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+message Term {
+    string term = 1;
+    uint64 did = 2;
+}

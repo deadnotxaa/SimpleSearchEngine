@@ -1,0 +1,1 @@
+add_library(Search Search.hpp Search.cpp)
