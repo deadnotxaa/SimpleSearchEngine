@@ -8,6 +8,12 @@
 #include <QPalette>
 #include <QLabel>
 #include <QColor>
+#include <QLayout>
+
+#include "../Index/Index.hpp"
+#include "../Parser/Parser.hpp"
+#include "../Search/Search.hpp"
+
 
 class IndexWindow : public QMainWindow
 {
@@ -17,14 +23,17 @@ public:
     explicit IndexWindow(QWidget *parent = nullptr);
     ~IndexWindow() override;
 
-    std::string GetSelectedPath();
 
 private slots:
     void browseFiles();
-    void savePath();
+    void browseIndex();
+
+    void createIndex();
+    void search();
 
 private:
-    QLineEdit *pathLineEdit;
     std::string path;
+    std::string selected_index_path;
+    std::string query;
 };
 

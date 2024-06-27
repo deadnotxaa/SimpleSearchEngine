@@ -14,7 +14,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra") # -pedantic -Werror
 find_package(absl REQUIRED)
 set(protobuf_ABSL_USED_TARGETS
         absl::absl_check
-#        absl::lts_20240116
         absl::absl_log
         absl::algorithm
         absl::base

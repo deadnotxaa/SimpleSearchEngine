@@ -30,17 +30,29 @@ void deadnotxaa::Index::CreateIndex() {
     }
 
     // Output the contents
-    for (const auto& item : index.index()) {
-        std::cout << "Word: " << item.first << std::endl;
-        for (const auto& doc : item.second.docs_vector()) {
-            std::cout << "  Doc ID: " << doc.doc_id() << ", Word Occurrence Count: " << doc.word_occurrence_count() << std::endl;
-        }
-    }
+//    for (const auto& item : index.index()) {
+//        std::cout << "Word: " << item.first << std::endl;
+//        for (const auto& doc : item.second.docs_vector()) {
+//            std::cout << "  Doc ID: " << doc.doc_id() << ", Word Occurrence Count: " << doc.word_occurrence_count() << std::endl;
+//        }
+//    }
+
+    GeneralInformation info;
+    info.set_average_document_length(average_document_length_);
+    info.set_total_documents_length(files_.size());
+    info.set_b_coefficient(0.75);
+    info.set_k1_coefficient(1.5);
 
     std::ofstream index_file("index.dat", std::ios::out | std::ios::binary | std::ios::trunc);
     if (!index.SerializeToOstream(&index_file)) {
         throw std::runtime_error("Inverted index wasn't saved due to unexpected problem!");
     }
+
+    std::ofstream general_info("index_info.dat", std::ios::binary | std::ios::out | std::ios::trunc);
+    if (!info.SerializeToOstream(&general_info)) {
+        throw std::runtime_error("Inverted index general info wasn't saved due to unexpected problem!");
+    }
+
 
     google::protobuf::ShutdownProtobufLibrary();
 }

@@ -3,8 +3,8 @@ syntax = "proto3";
 message GeneralInformation {
     uint64 average_document_length = 1;     // avg.d.l.
     uint64 total_documents_length = 2;      // N
-    uint64 k1_coefficient = 3;              // k_1 coefficient
-    uint64 b_coefficient = 4;               // b coefficient
+    double k1_coefficient = 3;              // k_1 coefficient
+    double b_coefficient = 4;               // b coefficient
 }
 
 message DocumentId {
